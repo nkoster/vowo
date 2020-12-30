@@ -34,15 +34,17 @@ const persons = [
 ]
 
 
-// Return a list of persons, aged 35.
+// The "aged" function returns a list of persons, older than a certain age.
 // The function takes a persons list, and an arbitrary age.
-const age = 35
 const aged = (persons, age) => persons.filter(person => person.age >= age)
     .map(p => {
         const firstName = p.name.split(' ')[0]
         const lastName = p.name.split(' ')[1]
         return `${lastName}, ${firstName}`
     })
+
+// Return a list of persons older than 35.
+const age = 35
 console.log(`Persons age >= ${age}:`, aged(persons, age))
 
 
@@ -53,6 +55,22 @@ const findPerson = name =>
 console.log('Find a person with the string "Black":', findPerson('Black'))
 
 
+// This is a function to provide a simple check to
+// verify that two objects are "equal".
+const isObjectEqual = (o1, o2) => JSON.stringify(o1) === (JSON.stringify(o2))
+
+
+// This is a function that tests if a person object
+// exists in the persons list.
+const personExists = person => {
+    for (let i = 0; i <= persons.length; i++) {
+        if (isObjectEqual(persons[i], person)) {
+            return true
+        }
+    }
+    return false
+}
+
 /*
 a function called "api" which receives the person object
 as the only argument and returns a Promise that
@@ -61,15 +79,13 @@ The "api" function should reject with an error if one occurs.
 */
 const api = person => {
     return new Promise((resolve, reject) => {
-        if (person.age) {
+        const { name, age } = person
+        if (personExists(person)) {
             setTimeout(_ => {
-                resolve({
-                    name: person.name,
-                    age: person.age
-                })
+                resolve({ name, age })
             }, Math.floor(Math.random() * 500) + 500)
         } else {
-            reject(`Error: person "${person.name}" not found.`)
+            reject(`Error: person object not found: "${Object.values(person)}"`)
         }    
     })
 }
@@ -84,6 +100,11 @@ persons.forEach(person => {
 
 // Test the "api" function with an unknown object.
 api({ name: 'Pamela Black', age: 46 })
+    .then(p => console.log('====>', p))
+    .catch(err => console.log(err))
+
+// Test the "api" function with a known object.
+api({ name: 'Pamela Black', age: 47 })
     .then(p => console.log('====>', p))
     .catch(err => console.log(err))
 
