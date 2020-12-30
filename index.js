@@ -118,12 +118,12 @@ persons.forEach(async person => {
 // Test the "api" function with an unknown object.
 api({ name: 'Pamela Black', age: 46 })
     .then(p => console.log('====>', p))
-    .catch(err => console.log(err))
+    .catch(err => console.log('====>', err))
 
 // Test the "api" function with a known object.
 api({ name: 'Pamela Black', age: 47 })
     .then(p => console.log('====>', p))
-    .catch(err => console.log(err))
+    .catch(err => console.log('====>', err))
 
 // Find the average age for all persons in the list.
 const averageAge = persons.map(p => p.age)
