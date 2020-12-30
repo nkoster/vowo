@@ -1,3 +1,4 @@
+// The mock data.
 const persons = [
     {
         name: 'Sarah Smith',
@@ -33,9 +34,10 @@ const persons = [
     }
 ]
 
-
-// The "aged" function returns a list of persons, older than a certain age.
-// The function takes a persons list, and an arbitrary age.
+/*
+The "aged" function returns a list of persons, older than a certain age.
+The function takes a persons list, and an arbitrary age.
+*/
 const aged = (persons, age) => persons.filter(person => person.age >= age)
     .map(p => {
         const firstName = p.name.split(' ')[0]
@@ -47,22 +49,28 @@ const aged = (persons, age) => persons.filter(person => person.age >= age)
 const age = 35
 console.log(`Persons age >= ${age}:`, aged(persons, age))
 
-
-// A function to find a person in the persons list by
-// searching for a name or a part of a name.
-const findPerson = name =>
+/*
+A function to find a person in the persons list by
+searching for a name or a part of a name.
+*/
+const findPerson = (persons, name) =>
     persons.find(p => p.name.includes(name))
-console.log('Find a person with the string "Black":', findPerson('Black'))
 
+// Find Pamela...
+console.log('Find a person with the string "Black":',
+    findPerson(persons, 'Black'))
 
-// This is a function to provide a simple check to
-// verify that two objects are "equal".
+/*
+This is a function to provide a simple check to
+verify that two objects are "equal".
+*/
 const isObjectEqual = (o1, o2) => JSON.stringify(o1) === (JSON.stringify(o2))
 
-
-// This is a function that tests if a person object
-// exists in the persons list.
-const personExists = person => {
+/*
+This is a function that tests if a person object
+exists in a persons list.
+*/
+const personExists = (persons, person) => {
     for (let i = 0; i <= persons.length; i++) {
         if (isObjectEqual(persons[i], person)) {
             return true
@@ -72,15 +80,15 @@ const personExists = person => {
 }
 
 /*
-a function called "api" which receives the person object
-as the only argument and returns a Promise that
-resolves with a value after a random time between 500ms and 1000ms.
+A function called "api" which receives the person object
+as the only argument and returns a Promise that resolves with
+a value after a random time between 500ms and 1000ms.
 The "api" function should reject with an error if one occurs.
 */
 const api = person => {
     return new Promise((resolve, reject) => {
         const { name, age } = person
-        if (personExists(person)) {
+        if (personExists(persons, person)) {
             setTimeout(_ => {
                 resolve({ name, age })
             }, Math.floor(Math.random() * 500) + 500)
@@ -90,8 +98,10 @@ const api = person => {
     })
 }
 
-// Test the "api" function by looping async over all persons.
-// Responses are with a random delay and out of order.
+/*
+Test the "api" function by looping async over all persons.
+Responses are with a random delay and out of order.
+*/
 persons.forEach(person => {
     api(person)
         .then(p => console.log(p))
@@ -108,8 +118,7 @@ api({ name: 'Pamela Black', age: 47 })
     .then(p => console.log('====>', p))
     .catch(err => console.log(err))
 
-
-// The average age for all persons in the list.
+// Find the average age for all persons in the list.
 const averageAge = persons.map(p => p.age)
     .reduce((sum, age) => sum + age) / persons.length
 
