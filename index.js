@@ -107,7 +107,8 @@ persons.forEach(person => {
         .catch(err => console.log(err))
 })
 
-// Test the "api" function by looping sync over all persons.
+// Test the "api" function by looping over all persons,
+// and wait for a response, to do something else afterwards.
 persons.forEach(async person => {
     await api(person)
         .then(p => console.log('sync:', p))
