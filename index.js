@@ -46,9 +46,10 @@ const aged = (persons, age) => persons.filter(person => person.age >= age)
 console.log(`Persons age >= ${age}:`, aged(persons, age))
 
 
-// A function to find a person in the persons list.
-const findPerson = person =>
-    persons.find(p => p.name.includes(person))
+// A function to find a person in the persons list by
+// searching for a name or a part of a name.
+const findPerson = name =>
+    persons.find(p => p.name.includes(name))
 console.log('Find a person with the string "Black":', findPerson('Black'))
 
 
@@ -73,7 +74,7 @@ const api = person => {
     })
 }
 
-// Test the api function by looping async over all persons.
+// Test the "api" function by looping async over all persons.
 // Responses are with a random delay and out of order.
 persons.forEach(person => {
     api(person)
@@ -81,8 +82,8 @@ persons.forEach(person => {
         .catch(err => console.log(err))
 })
 
-// Test the api function with an unknown object.
-api({name: 'Pamela Black', age: 46 })
+// Test the "api" function with an unknown object.
+api({ name: 'Pamela Black', age: 46 })
     .then(p => console.log('====>', p))
     .catch(err => console.log(err))
 
