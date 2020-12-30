@@ -101,7 +101,7 @@ const api = person => {
 
 /*
 Test the "api" function by looping async over all persons.
-Responses are with a random delay and out of order.
+Responses come in with a random delay, hence out of order.
 */
 persons.forEach(person => {
     api(person)
