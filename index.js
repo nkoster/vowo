@@ -73,7 +73,7 @@ persons.forEach(person => {
         .catch(err => console.log(err))
 })
 
-averageAge = persons.map(p => p.age)
+const averageAge = persons.map(p => p.age)
     .reduce((sum, age) => sum + age) / persons.length
 
 console.log('Average age:', averageAge)
