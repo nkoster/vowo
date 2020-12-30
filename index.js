@@ -81,7 +81,7 @@ persons.forEach(person => {
         .catch(err => console.log(err))
 })
 
-// Test api with an unknown object.
+// Test the api function with an unknown object.
 api({name: 'Pamela Black', age: 46 })
     .then(p => console.log('====>', p))
     .catch(err => console.log(err))
