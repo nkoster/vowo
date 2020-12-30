@@ -52,7 +52,7 @@ console.log(`Persons age >= ${age}:`, aged(persons, age))
 
 /*
 A function "findPerson" to find a person in the persons list by
-searching for a name or a part of a name.
+searching for a name, or a part of a name.
 */
 const findPerson = (persons, name) =>
     persons.find(p => p.name.includes(name))
@@ -117,11 +117,6 @@ persons.forEach(async person => {
 
 // Test the "api" function with an unknown object.
 api({ name: 'Pamela Black', age: 46 })
-    .then(p => console.log('====>', p))
-    .catch(err => console.log('====>', err))
-
-// Test the "api" function with a known object.
-api({ name: 'Pamela Black', age: 47 })
     .then(p => console.log('====>', p))
     .catch(err => console.log('====>', err))
 
