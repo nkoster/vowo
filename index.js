@@ -33,6 +33,9 @@ const persons = [
     }
 ]
 
+
+// Return a list of persons, aged 35.
+// The function takes a persons list, and an abritrary age.
 const age = 35
 const aged = (persons, age) => persons.filter(person => person.age >= age)
     .map(p => {
@@ -42,9 +45,12 @@ const aged = (persons, age) => persons.filter(person => person.age >= age)
     })
 console.log(`Persons age >= ${age}:`, aged(persons, age))
 
+
+// A function to find a person in the persons list.
 const findPerson = person =>
     persons.find(p => p.name.includes(person))
 console.log('Find a person with the string "Black":', findPerson('Black'))
+
 
 /*
 a function called "api" which receives the person object
@@ -67,17 +73,22 @@ const api = person => {
     })
 }
 
+// Test the api function by looping async over all persons.
+// Responses are with a random delay and out of order.
 persons.forEach(person => {
     api(person)
         .then(p => console.log(p))
         .catch(err => console.log(err))
 })
 
+// Test api with an unknown object.
+api({name: 'Pamela Black', age: 46 })
+    .then(p => console.log('====>', p))
+    .catch(err => console.log(err))
+
+
+// The average age for all persons in the list.
 const averageAge = persons.map(p => p.age)
     .reduce((sum, age) => sum + age) / persons.length
 
 console.log('Average age:', averageAge)
-
-api({name: 'Pamela Black', age: 47 })
-    .then(p => console.log('====>', p))
-    .catch(err => console.log(err))
