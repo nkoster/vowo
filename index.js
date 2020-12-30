@@ -36,7 +36,8 @@ const persons = [
 
 /*
 The "aged" function returns a list of persons, older than a certain age.
-The function takes a persons list, and an arbitrary age.
+The function takes a persons list, and an arbitrary age. The function
+returns an array with strings in the format: "lastName, firstName"
 */
 const aged = (persons, age) => persons.filter(person => person.age >= age)
     .map(p => {
@@ -45,18 +46,18 @@ const aged = (persons, age) => persons.filter(person => person.age >= age)
         return `${lastName}, ${firstName}`
     })
 
-// Return a list of persons older than 35.
+// Test the "aged" function: return a list of persons older than 35.
 const age = 35
 console.log(`Persons age >= ${age}:`, aged(persons, age))
 
 /*
-A function to find a person in the persons list by
+A function "findPerson" to find a person in the persons list by
 searching for a name or a part of a name.
 */
 const findPerson = (persons, name) =>
     persons.find(p => p.name.includes(name))
 
-// Find Pamela...
+// Test the "findPerson" function and find Pamela...
 console.log('Find a person with the string "Black":',
     findPerson(persons, 'Black'))
 
@@ -67,7 +68,7 @@ verify that two objects are "equal".
 const isObjectEqual = (o1, o2) => JSON.stringify(o1) === (JSON.stringify(o2))
 
 /*
-This is a function that tests if a person object
+This is a function that tests if a certain person object
 exists in a persons list.
 */
 const personExists = (persons, person) => {
@@ -80,10 +81,10 @@ const personExists = (persons, person) => {
 }
 
 /*
-A function called "api" which receives the person object
-as the only argument and returns a Promise that resolves with
+A function called "api", which receives a person object
+as the only argument, and returns a Promise that resolves with
 a value after a random time between 500ms and 1000ms.
-The "api" function should reject with an error if one occurs.
+The "api" function rejects with an error if one occurs.
 */
 const api = person => {
     return new Promise((resolve, reject) => {
