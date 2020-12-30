@@ -35,7 +35,7 @@ const persons = [
 
 
 // Return a list of persons, aged 35.
-// The function takes a persons list, and an abritrary age.
+// The function takes a persons list, and an arbitrary age.
 const age = 35
 const aged = (persons, age) => persons.filter(person => person.age >= age)
     .map(p => {
