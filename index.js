@@ -33,22 +33,14 @@ const persons = [
     }
 ]
 
-const age35 = persons.filter(person => person.age >= 35).map(p => {
-    const firstName = p.name.split(' ')[0]
-    const lastName = p.name.split(' ')[1]
-    return `${lastName}, ${firstName}`
-})
-console.log('List of persons aged 35:', age35)
-
-const includeAge = (arr, age) => {
-    const list = arr.filter(person => person.age >= age).map(p => {
+const age = 35
+const aged = (persons, age) => persons.filter(person => person.age >= age)
+    .map(p => {
         const firstName = p.name.split(' ')[0]
         const lastName = p.name.split(' ')[1]
         return `${lastName}, ${firstName}`
     })
-    return list
-}
-console.log('Persons >22:', includeAge(persons, 50))
+console.log(`Persons age >= ${age}:`, aged(persons, age))
 
 const findPerson = person =>
     persons.find(p => p.name.includes(person))
