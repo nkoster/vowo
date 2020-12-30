@@ -88,8 +88,8 @@ The "api" function rejects with an error if one occurs.
 */
 const api = person => {
     return new Promise((resolve, reject) => {
-        const { name, age } = person
         if (personExists(persons, person)) {
+            const { name, age } = person
             setTimeout(_ => {
                 resolve({ name, age })
             }, Math.floor(Math.random() * 500) + 500)
