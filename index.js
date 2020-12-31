@@ -101,11 +101,9 @@ const api = person => {
 
 // Test the "api" function by looping async over all persons.
 // Responses come in with a random delay, hence out of order.
-persons.forEach(person => {
-    api(person)
-        .then(p => console.log(p))
-        .catch(err => console.log(err))
-})
+persons.forEach(person => api(person)
+    .then(p => console.log(p))
+    .catch(err => console.log(err)))
 
 // Test the "api" function by looping over all persons,
 // and wait for a response, to do something else afterwards.
