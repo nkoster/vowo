@@ -51,7 +51,7 @@ const age = 35
 console.log(`Persons age >= ${age}:`, aged(persons, age))
 
 /*
-A function "findPerson" to find a person in the persons list by
+A function to find a person in the persons list by
 searching for a name, or a part of a name.
 */
 const findPerson = (persons, name) =>
@@ -90,37 +90,27 @@ const api = person => {
     return new Promise((resolve, reject) => {
         if (personExists(persons, person)) {
             const { name, age } = person
+            const delay = Math.floor(Math.random() * 500) + 500
             setTimeout(_ => {
-                resolve({ name, age })
-            }, Math.floor(Math.random() * 500) + 500)
+                resolve({ name, age, income: delay })
+            }, delay)
         } else {
             reject(`Error: person object not found: "${Object.values(person)}"`)
         }    
     })
 }
 
-// Test the "api" function by looping async over all persons.
-// Responses come in with a random delay, hence out of order.
-persons.forEach(person => api(person)
-    .then(p => console.log(p))
-    .catch(err => console.log(err)))
-
-// Test the "api" function by looping over all persons,
-// and wait for a response, to do something else afterwards.
-persons.forEach(async person => {
-    await api(person)
-        .then(p => console.log('sync:', p))
-        .catch(err => console.log(err))
-    console.log('above person:', person)
-})
-
 // Test the "api" function with an unknown object.
 api({ name: 'Pamela Black', age: 46 })
     .then(p => console.log('====>', p))
     .catch(err => console.log('====>', err))
 
-// Find the average age for all persons in the list.
-const averageAge = persons.map(p => p.age)
-    .reduce((sum, age) => sum + age) / persons.length
-
-console.log('Average age:', averageAge)
+// Get the average income for all persons.
+let income = []
+const promises =
+    persons.map(p => api(p).then(p => income.push(p.income)))
+Promise.all(promises).then(_ => {
+    const averageIncome =
+        income.reduce((sum, income) => sum + income) / income.length
+    console.log('Average income for all persons:', averageIncome)
+})
