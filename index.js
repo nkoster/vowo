@@ -72,6 +72,7 @@ const personExists = (persons, person) => {
 A function called "api", which receives a person object
 as the only argument, and returns a Promise that resolves with
 a value after a random time between 500ms and 1000ms.
+This delay value is also representing an income for a person.
 The "api" function rejects with an error if one occurs.
 */
 const api = person => {
