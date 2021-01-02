@@ -114,8 +114,7 @@ api('aap')
 
 // Get an average income for all persons.
 const income = []
-const promises =
-    persons.map(p => api(p)
+const promises = persons.map(p => api(p)
         .then(p => {
             console.log(`${p.name}, income`, p.income)
             income.push(p.income)
