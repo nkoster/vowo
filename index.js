@@ -48,7 +48,7 @@ const aged = (persons, age) => persons.filter(person => person.age >= age)
 
 // Test the "aged" function: return a list of persons older than 35.
 const age = 35
-console.log(`Persons age >= ${age}:`, aged(persons, age))
+console.log(`Persons aged ${age} plus:`, aged(persons, age))
 
 /*
 A function to find a person in the persons list by
