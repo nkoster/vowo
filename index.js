@@ -101,10 +101,12 @@ const api = person => {
 api({ name: 'Pamela Black', age: 46 })
     .then(p => console.log(p))
     .catch(err => console.error('ERROR:', err))
+
 // Test the "api" function without argument.
 api()
     .then(p => console.log(p))
     .catch(err => console.error('ERROR:', err))
+    
 // Test the "api" function with a wrong type.
 api('aap')
     .then(p => console.log(p))
