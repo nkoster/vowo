@@ -119,8 +119,10 @@ const promises = persons.map(p => api(p)
             income.push(p.income)
         })
         .catch(err => console.error(err)))
-Promise.all(promises).then(_ => {
-    const averageIncome =
-        income.reduce((sum, income) => sum + income) / income.length
-    console.log('Average income for all persons:', averageIncome)
-}).catch(err => console.error('ERROR:', err))
+Promise.all(promises)
+    .then(_ => {
+        const averageIncome =
+            income.reduce((sum, income) => sum + income) / income.length
+        console.log('Average income for all persons:', averageIncome)
+    })
+    .catch(err => console.error('ERROR:', err))
