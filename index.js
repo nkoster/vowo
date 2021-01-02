@@ -51,17 +51,6 @@ const age = 35
 console.log(`Persons aged ${age} plus:`, aged(persons, age))
 
 /*
-A function to find a person in the persons list by
-searching for a name, or a part of a name.
-*/
-const findPerson = (persons, name) =>
-    persons.find(p => p.name.includes(name))
-
-// Test the "findPerson" function and find Pamela...
-console.log('Find a person with the string "Black":',
-    findPerson(persons, 'Black'))
-
-/*
 This is a function to provide a simple check to
 verify that two objects are "equal".
 */
