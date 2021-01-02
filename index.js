@@ -106,7 +106,7 @@ api({ name: 'Pamela Black', age: 46 })
 api()
     .then(p => console.log(p))
     .catch(err => console.error('ERROR:', err))
-    
+
 // Test the "api" function with a wrong type.
 api('aap')
     .then(p => console.log(p))
@@ -115,10 +115,12 @@ api('aap')
 // Get an average income for all persons.
 const income = []
 const promises =
-    persons.map(p => api(p).then(p => {
-        console.log(`${p.name}, income`, p.income)
-        income.push(p.income)
-    }))
+    persons.map(p => api(p)
+        .then(p => {
+            console.log(`${p.name}, income`, p.income)
+            income.push(p.income)
+        })
+        .catch(err => console.error(err)))
 Promise.all(promises).then(_ => {
     const averageIncome =
         income.reduce((sum, income) => sum + income) / income.length
