@@ -123,4 +123,4 @@ Promise.all(promises).then(_ => {
     const averageIncome =
         income.reduce((sum, income) => sum + income) / income.length
     console.log('Average income for all persons:', averageIncome)
-})
+}).catch(err => console.error('ERROR:', err))
