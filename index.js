@@ -105,7 +105,7 @@ api({ name: 'Pamela Black', age: 46 })
     .then(p => console.log('====>', p))
     .catch(err => console.log('====>', err))
 
-// Get the average income for all persons.
+// Get an average income for all persons.
 const income = []
 const promises =
     persons.map(p => api(p).then(p => {
