@@ -51,8 +51,7 @@ const age = 35
 console.log(`Persons aged ${age} plus:`, aged(persons, age))
 
 /*
-This is a function to provide a simple check to
-verify that two objects are "equal".
+This is a function to check if content of two objects is equal.
 */
 const isObjectEqual = (o1, o2) => JSON.stringify(o1) === (JSON.stringify(o2))
 
