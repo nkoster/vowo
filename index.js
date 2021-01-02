@@ -76,6 +76,10 @@ a value after a random time between 500ms and 1000ms.
 The "api" function rejects with an error if one occurs.
 */
 const api = person => {
+    if (!person) {
+        return new Promise((_, reject) =>
+            reject('You need to call this function with a person object'))
+    }
     return new Promise((resolve, reject) => {
         if (personExists(persons, person)) {
             const { name, age } = person
@@ -84,15 +88,27 @@ const api = person => {
                 resolve({ name, age, income: delay })
             }, delay)
         } else {
-            reject(`Error: person object not found: "${Object.values(person)}"`)
+            reject(`Person object not found: "${
+                typeof person === 'object'
+                    ? Object.values(person)
+                    : person
+            }"`)
         }    
     })
 }
 
 // Test the "api" function with an unknown object.
 api({ name: 'Pamela Black', age: 46 })
-    .then(p => console.log('====>', p))
-    .catch(err => console.log('====>', err))
+    .then(p => console.log(p))
+    .catch(err => console.error('ERROR:', err))
+// Test the "api" function without argument.
+api()
+    .then(p => console.log(p))
+    .catch(err => console.error('ERROR:', err))
+// Test the "api" function with a wrong type.
+api('aap')
+    .then(p => console.log(p))
+    .catch(err => console.error('ERROR:', err))
 
 // Get an average income for all persons.
 const income = []
