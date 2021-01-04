@@ -54,7 +54,7 @@ console.log(`Persons aged ${age} plus:`, aged(persons, age))
 This is a function to check if content of two objects is equal.
 The function is a helper for the function below, "personExists".
 */
-const isObjectEqual = (o1, o2) => JSON.stringify(o1) === (JSON.stringify(o2))
+const areObjectsEqual = (o1, o2) => JSON.stringify(o1) === (JSON.stringify(o2))
 
 /*
 This is a function that tests if a certain person object exists in
@@ -63,7 +63,7 @@ below, "api".
 */
 const personExists = (persons, person) => {
     for (let i = 0; i <= persons.length; i++) {
-        if (isObjectEqual(persons[i], person)) {
+        if (areObjectsEqual(persons[i], person)) {
             return true
         }
     }
