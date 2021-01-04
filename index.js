@@ -36,7 +36,7 @@ const persons = [
 
 /*
 The "aged" function returns a list of persons, older than a certain age.
-The function takes a persons list, and an arbitrary age. The function
+The function takes a persons list and an age as arguments. The function
 returns an array with strings in the format: "lastName, firstName"
 */
 const aged = (persons, age) => persons.filter(person => person.age >= age)
