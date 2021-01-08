@@ -78,7 +78,7 @@ This delay value is also representing an income for a person.
 The "api" function rejects with an error if one occurs.
 */
 const api = person => {
-    if (!person) {
+    if (!person || typeof person !== 'object') {
         return new Promise((_, reject) =>
             reject('You need to call this function with a person object'))
     }
@@ -90,11 +90,7 @@ const api = person => {
                 resolve({ name, age, income: delay })
             }, delay)
         } else {
-            reject(`Person object not found: "${
-                typeof person === 'object'
-                    ? Object.values(person)
-                    : person
-            }"`)
+            reject(`Person object not found: "${Object.values(person)}"`)
         }    
     })
 }
